@@ -1,6 +1,11 @@
 from flask import Flask, render_template, request
 from house_price_prediction_delhi import *  # Import your existing Python code
 
+import inspect
+if not hasattr(inspect, 'getargspec'):
+    inspect.getargspec = inspect.getfullargspec
+
+
 app = Flask(__name__)
 
 Delhi_dataset.drop(['Price'], axis=1, inplace=True)
