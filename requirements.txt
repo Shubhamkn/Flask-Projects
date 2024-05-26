@@ -1,0 +1,7 @@
+pandas 
+matplotlib
+seaborn 
+scikit-learn==1.2.2
+xgboost 
+flask
+gunicorn==19.7.1

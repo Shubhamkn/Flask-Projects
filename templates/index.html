@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>House Price Prediction - Delhi</title>
+{% endblock %}
+
+{% block body %}
+<h2>House Price Prediction - Delhi</h2>
+<div class="input-form">
+    <form method="POST" action="/result/">
+        <div class="label">
+            
+            {% for variable in input_variables %}
+            <label for="{{ variable }}">{{ variable }}</label>
+            
+            {% if  variable in ['Location'] %}
+                <!-- Example dropdown field -->
+                <select id="{{ variable }}" name="{{ variable }}" required>
+                    {% for loc_var in location_option_list %}
+                    <option value="{{ loc_var }}">{{loc_var}}</option>
+                    <!-- Add more options if needed -->
+                    {% endfor %}
+                </select>
+            
+            {% elif variable not in ['Area','No. of Bedrooms'] %}
+            <select id="{{ variable }}" name="{{ variable }}" required>
+                <option value="No">No</option>
+                <option value="Yes">Yes</option>
+                <!-- Add more options if needed -->
+            </select>
+            
+            {% else %}
+                <!-- Example numeric input field -->
+                <input type="number" min="0" id="{{ variable }}" name="{{ variable }}" required>
+            {% endif %}
+        
+        {% endfor %}
+        </div>
+        <button type="submit">Predict Price</button>
+    </form>
+</div>
+{% endblock %}
